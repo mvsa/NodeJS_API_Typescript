@@ -1,0 +1,21 @@
+imagem do mongo usada: tutum mongodb (withou password)
+    docker pull tutum/mongodb
+    docker run -d -p 27017:27017 -p 28017:28017 -e AUTH=no tutum/mongodb
+
+
+docker{
+    docker ps = visualiza containers 
+    uma imagem é composta por 'pedaços' (layers)
+    -d : rodando em backgroud
+    -p mapea a porta do meu host : para o container
+    -e ATUH=no: rodar sem senha?
+
+    https://medium.com/xp-inc/principais-comandos-docker-f9b02e6944cd
+}
+
+conexão com a base mongo{
+    utilizando o robomongo
+    type: direct connection
+    nome: qualquer
+    addres: localhost e porta setada da imagem
+}

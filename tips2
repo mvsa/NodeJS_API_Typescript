@@ -1,0 +1,36 @@
+npm init -y
+npm install typescript ts-node body-parser express http-status 
+tsc --init
+npm run compile (deixar rodando em bk)
+npm install mongoose 
+
+
+
+
+
+
+
+
+
+
+
+--------
+body-parser = middleware para interceptar requests http
+
+
+
+transpile manual: tsc nomearuivo.ts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
