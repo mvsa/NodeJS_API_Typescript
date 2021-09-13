@@ -3,6 +3,7 @@ npm install typescript ts-node body-parser express http-status
 tsc --init
 npm run compile (deixar rodando em bk)
 npm install mongoose 
+npm install cors
 
 
 após o docker file {
@@ -11,6 +12,10 @@ após o docker file {
 
     --apos docker-compose
     docker-compose up
+
+
+    (quando subir para prd atenção na porta definida  na chave ports:
+    em prd deve ser algo como: "80:3050")
 }
 
 

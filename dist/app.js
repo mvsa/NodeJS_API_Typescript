@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
+const cors_1 = __importDefault(require("cors"));
 const db_1 = __importDefault(require("./database/db"));
 const newsController_1 = __importDefault(require("./controller/newsController"));
 class Startup {
@@ -15,7 +16,15 @@ class Startup {
         this.middleware();
         this.routes();
     }
+    enableCors() {
+        const options = {
+            methods: "GET,OPTIONS,PUT,POST,DELETE",
+            origin: "*" //poderia passar endereço do front a qual ele iria aceitar
+        };
+        this.app.use((0, cors_1.default)(options));
+    }
     middleware() {
+        this.enableCors();
         this.app.use(body_parser_1.default.json());
         this.app.use(body_parser_1.default.urlencoded({ extended: false })); //para que seja possivel trabalhar com query string(?)
     }

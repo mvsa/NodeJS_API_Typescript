@@ -56,3 +56,7 @@ good luck!
 Ao querer usar uma nova imagem, coloca o nome dela no campo image: do composer
 (necessito apenas configurar o docker-composer.yml)
 e rodar docker-compose up 
+
+
+-----------------------------------------------------------------------------
+

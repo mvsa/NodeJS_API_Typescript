@@ -1,5 +1,6 @@
 import express from "express";
 import bodyparser from 'body-parser';
+import cors from 'cors';
 
 import Db from './database/db';
 import NewsController from './controller/newsController';
@@ -18,10 +19,22 @@ class Startup{
         this.routes();    
     }
 
+    enableCors(){
+        const options: cors.CorsOptions = {
+            methods: "GET,OPTIONS,PUT,POST,DELETE",
+            origin:"*" //poderia passar endereço do front a qual ele iria aceitar
+        }
+
+        this.app.use(cors(options))
+    }
+
     middleware(){
+        this.enableCors();
         this.app.use(bodyparser.json());
         this.app.use(bodyparser.urlencoded({extended:false})); //para que seja possivel trabalhar com query string(?)
     }
+
+
     //As rotas poderiam ser encapsuladas para evitar repetição de codigo
     routes(){
         this.app.route('/').get((req,rest)=>{
