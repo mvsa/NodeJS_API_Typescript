@@ -18,11 +18,16 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = __importStar(require("mongoose"));
-const newsSchema_1 = __importDefault(require("../models/newsSchema"));
-exports.default = mongoose.model('news', newsSchema_1.default);
-//O repositorio está apenas exportando o schema? Existe um melhor uso para esse arquivo?
+const NewsSchema = new mongoose.Schema({
+    hat: { type: String },
+    title: { type: String },
+    text: { type: String },
+    author: { type: String },
+    img: { type: String },
+    publishDate: { type: Date },
+    link: { type: String },
+    active: { type: Boolean },
+});
+exports.default = NewsSchema;

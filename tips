@@ -4,6 +4,7 @@ imagem do mongo usada: tutum mongodb (withou password)
 
 
 docker{
+    docker images
     docker ps = visualiza containers 
     uma imagem é composta por 'pedaços' (layers)
     -d : rodando em backgroud
@@ -11,6 +12,13 @@ docker{
     -e ATUH=no: rodar sem senha?
 
     https://medium.com/xp-inc/principais-comandos-docker-f9b02e6944cd
+
+    no docker-compose, no build eu poderia colocar apenas .
+    para que toda vez uma imagem nova fosse criada, 
+    da forma atual eu vou usar a imagem ja disponivel
+
+
+
 }
 
 conexão com a base mongo{
@@ -19,3 +27,32 @@ conexão com a base mongo{
     nome: qualquer
     addres: localhost e porta setada da imagem
 }
+
+packageJson{
+    no pagackage json o comando start antes era:
+     "start": "node ./dist/server.js"
+
+     porém ao montar o docker file foi necessario alterar para a versão que esta agora
+     pois o arquivo ja estara na raiz do projeot e portanto n preciso mencionar a pasta dist
+}
+
+
+
+dockerhub{
+    docker login
+    docker push nomeImagem
+}
+
+irst, login your docker account.
+Second, use this command:docker images,
+this command can show you all images you have, then you chose an image to push.
+Third, you should add a tag for image you chose. You can use this command:
+docker tag existent_image_name:latest your_user_name/new_image_name:latest
+Finally, you use this command:docker push your_user_name/new_image:latest
+please try it again, if denied again.You can use sudo command like this:
+sudo docker push your_user_name/new_image:latest
+good luck!
+
+Ao querer usar uma nova imagem, coloca o nome dela no campo image: do composer
+(necessito apenas configurar o docker-composer.yml)
+e rodar docker-compose up 

@@ -5,6 +5,14 @@ npm run compile (deixar rodando em bk)
 npm install mongoose 
 
 
+após o docker file {
+    docker build -t mvsa/newapi . // cria imagem localmente, se possivel colocar o nome do usuario, ou n separa por /
+    docker run -d -p 5000:3050 mvsa/test-api
+
+    --apos docker-compose
+    docker-compose up
+}
+
 
 
 

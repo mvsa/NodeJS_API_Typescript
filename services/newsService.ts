@@ -1,5 +1,5 @@
 import NewsRepository from '../repositories/newsRepository';
-import NewsSchema from '../models/newSchema';
+
 
 interface News{
 

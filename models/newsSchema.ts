@@ -9,6 +9,6 @@ const NewsSchema = new mongoose.Schema({
     publishDate: {type:Date},
     link: {type:String},
     active: {type:Boolean},
-})
+});
 
 export default NewsSchema;
