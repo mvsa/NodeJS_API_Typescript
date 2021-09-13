@@ -9,6 +9,7 @@ class NewsService{
 
     get(){
         return NewsRepository.find({});
+        //posso fazer um .sort no retorno
     }
 
     getById(_id:string){

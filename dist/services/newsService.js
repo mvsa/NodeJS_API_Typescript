@@ -7,6 +7,7 @@ const newsRepository_1 = __importDefault(require("../repositories/newsRepository
 class NewsService {
     get() {
         return newsRepository_1.default.find({});
+        //posso fazer um .sort no retorno
     }
     getById(_id) {
         return newsRepository_1.default.findById(_id);

@@ -66,3 +66,4 @@ export default new NewsController();
 //utilizados de forma errada pelo instrutor
 
 //Da forma implementada pelo instrutor como retornar o objeto recem criado/atualizado?
+//para ser usado em retornos da api?

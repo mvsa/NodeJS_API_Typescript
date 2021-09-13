@@ -2,7 +2,6 @@
 
 * Codigo gerado seguindo as aulas do curso 'Criando API's RESTful utilizando Typescript,Nodejs,mongo' do instrutor Thiago Adriano
 
-Obs: Durante as aulas, o instrutor toma algumas decisões de arquitetura do projeto em que
-não necessariamente estou de acordo ou acho que é a solução mais adequada.
+Obs: Durante as aulas, o instrutor tomou algumas decisões de arquitetura do projeto e realizou determinadas implementações que não necessariamente estou de acordo ou considero a solução mais adequada.
 Para tais momentos utilizei como oportunidade para comentar em código minhas impressões
-sobre as decisões tomadas
+sobre as decisões tomadas e possiveis soluções para tais gaps.
