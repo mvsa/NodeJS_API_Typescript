@@ -109,6 +109,6 @@
     "node_modules"
   ],
   "compileOnSave": true,
-  "buildOnSave":true
+  "buildOnSave":true //
 }
  
