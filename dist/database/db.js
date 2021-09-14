@@ -15,7 +15,6 @@ class Db {
     }
     createConnection() {
         mongoose_1.default.connect(this.DB_URL_DEV);
-        console.log('Connected to MongoDb');
     }
 }
 exports.default = Db;

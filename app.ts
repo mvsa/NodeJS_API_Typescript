@@ -4,6 +4,7 @@ import cors from 'cors';
 
 import Db from './database/db';
 import NewsController from './controller/newsController';
+import Auth from './config/auth';
 
 
 class Startup{
@@ -37,6 +38,7 @@ class Startup{
 
     //As rotas poderiam ser encapsuladas para evitar repetição de codigo
     routes(){
+        this.app.use(Auth.validate);
         this.app.route('/').get((req,rest)=>{
             rest.send({versao: '0.0.1'})
         });

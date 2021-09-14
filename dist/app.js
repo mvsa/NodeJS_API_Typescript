@@ -8,6 +8,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const cors_1 = __importDefault(require("cors"));
 const db_1 = __importDefault(require("./database/db"));
 const newsController_1 = __importDefault(require("./controller/newsController"));
+const auth_1 = __importDefault(require("./config/auth"));
 class Startup {
     constructor() {
         this.app = (0, express_1.default)();
@@ -30,6 +31,7 @@ class Startup {
     }
     //As rotas poderiam ser encapsuladas para evitar repetição de codigo
     routes() {
+        this.app.use(auth_1.default.validate);
         this.app.route('/').get((req, rest) => {
             rest.send({ versao: '0.0.1' });
         });

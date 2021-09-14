@@ -12,7 +12,6 @@ class Db{
 
     createConnection(){
         mongoose.connect(this.DB_URL_DEV);
-        console.log('Connected to MongoDb');
     }
 }
 

@@ -4,6 +4,7 @@ tsc --init
 npm run compile (deixar rodando em bk)
 npm install mongoose 
 npm install cors
+npm install jsonwebtoken
 
 
 após o docker file {
