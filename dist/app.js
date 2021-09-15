@@ -9,6 +9,7 @@ const cors_1 = __importDefault(require("cors"));
 const db_1 = __importDefault(require("./database/db"));
 const newsController_1 = __importDefault(require("./controller/newsController"));
 const auth_1 = __importDefault(require("./config/auth"));
+const uploads_1 = __importDefault(require("./utils/uploads"));
 class Startup {
     constructor() {
         this.app = (0, express_1.default)();
@@ -31,6 +32,14 @@ class Startup {
     }
     //As rotas poderiam ser encapsuladas para evitar repetição de codigo
     routes() {
+        this.app.route("/uploads").post(uploads_1.default.single('file'), (req, res) => {
+            try {
+                res.send("Arquivo enviado");
+            }
+            catch (err) {
+                console.error('erro', err);
+            }
+        });
         this.app.use(auth_1.default.validate);
         this.app.route('/').get((req, rest) => {
             rest.send({ versao: '0.0.1' });

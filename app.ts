@@ -6,6 +6,7 @@ import Db from './database/db';
 import NewsController from './controller/newsController';
 import Auth from './config/auth';
 
+import upload from './utils/uploads';
 
 class Startup{
     public app: express.Application;
@@ -38,6 +39,14 @@ class Startup{
 
     //As rotas poderiam ser encapsuladas para evitar repetição de codigo
     routes(){
+        this.app.route("/uploads").post(upload.single('file'),(req,res)=>{
+            try{
+                res.send("Arquivo enviado")
+            }catch(err){
+                console.error('erro', err)
+            }   
+        });
+
         this.app.use(Auth.validate);
         this.app.route('/').get((req,rest)=>{
             rest.send({versao: '0.0.1'})
