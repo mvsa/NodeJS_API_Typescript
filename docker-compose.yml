@@ -1,7 +1,7 @@
 version: "3"
 services:
   api:
-    image: mvsa22/crudapi
+    image: mvsa22/apiredis
     ports:
       - "5000:3050"
     links:
@@ -13,4 +13,6 @@ services:
       - "28017:28017"
     environment:
       - AUTH=no
+  redis:
+    image: "redis"
 

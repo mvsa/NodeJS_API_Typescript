@@ -24,12 +24,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const newsService_1 = __importDefault(require("../services/newsService"));
 const HttpStatus = __importStar(require("http-status"));
+const redis_1 = __importDefault(require("redis"));
 const helper_1 = __importDefault(require("../utils/helper"));
 class NewsController {
     get(req, res) {
-        newsService_1.default.get()
-            .then(news => helper_1.default.sendResponse(res, HttpStatus.OK, news))
-            .catch(err => console.error('erro', err));
+        // const cliente = redis.createClient(); local
+        const cliente = redis_1.default.createClient(6379, 'redis');
+        cliente.get('news', (err, reply) => {
+            if (reply) { //se ja tiver algo no redis com a chave 'news'
+                helper_1.default.sendResponse(res, HttpStatus.OK, JSON.parse(reply)); //retorna os dados do redis (mais rapido)
+            }
+            else {
+                //se não tiver, tras do banco e seta no redis para a proxima
+                newsService_1.default.get()
+                    .then(news => {
+                    cliente.set('news', JSON.stringify(news));
+                    cliente.expire('news', 20); //expirar em 20 sec
+                    helper_1.default.sendResponse(res, HttpStatus.OK, news);
+                })
+                    .catch(err => console.error('erro', err));
+            }
+        });
     }
     getById(req, res) {
         const _id = req.params.id;

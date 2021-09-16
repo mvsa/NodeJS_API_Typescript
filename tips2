@@ -9,10 +9,10 @@ npm install multer
 
 
 após o docker file {
-    docker build -t mvsa/newapi . // cria imagem localmente, se possivel colocar o nome do usuario, ou n separa por /
+    docker build -t mvsa22/newapi . // cria imagem localmente, se possivel colocar o nome do usuario, ou n separa por /
     docker run -d -p 5000:3050 mvsa/test-api
 
-    --apos docker-compose
+    --apos docker build
     docker-compose up
 
 

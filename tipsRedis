@@ -1,0 +1,20 @@
+camada de cache em memoria (antes expirar)
+BD  Nosql Chave valor
+
+Redis desktop manager
+
+O redis utiliza a porta 6379 como default
+
+-----------------------------
+npm install redis
+docker pull redis
+
+docker run --name redis13 -p 6379:6379 -d redis redis-server --appendonly no
+docker run --name redis13 -p 6379:6379 -d redis
+
+--accesando redis em um container
+docker exec -t redis13 redis-cli
+
+
+
+
