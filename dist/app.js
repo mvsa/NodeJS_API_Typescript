@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const cors_1 = __importDefault(require("cors"));
+const compression_1 = __importDefault(require("compression"));
 const db_1 = __importDefault(require("./database/db"));
 const auth_1 = __importDefault(require("./config/auth"));
 const uploads_1 = __importDefault(require("./utils/uploads"));
@@ -27,8 +28,9 @@ class Startup {
     }
     middleware() {
         this.enableCors();
-        this.app.use(body_parser_1.default.json());
+        this.app.use(body_parser_1.default.json()); //deprecated
         this.app.use(body_parser_1.default.urlencoded({ extended: false })); //para que seja possivel trabalhar com query string(?)
+        this.app.use((0, compression_1.default)());
     }
     //As rotas poderiam ser encapsuladas para evitar repetição de codigo
     routes() {

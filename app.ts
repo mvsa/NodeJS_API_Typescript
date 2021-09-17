@@ -1,6 +1,7 @@
 import express from "express";
 import bodyparser from 'body-parser';
 import cors from 'cors';
+import compression from 'compression';
 
 import Db from './database/db';
 import Auth from './config/auth';
@@ -31,8 +32,9 @@ class Startup{
 
     middleware(){
         this.enableCors();
-        this.app.use(bodyparser.json());
+        this.app.use(bodyparser.json());//deprecated
         this.app.use(bodyparser.urlencoded({extended:false})); //para que seja possivel trabalhar com query string(?)
+        this.app.use(compression())
     }
 
 

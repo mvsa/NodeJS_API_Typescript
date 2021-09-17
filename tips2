@@ -6,6 +6,8 @@ npm install mongoose
 npm install cors
 npm install jsonwebtoken
 npm install multer
+npm install compression
+npm install nodemon
 
 
 após o docker file {
