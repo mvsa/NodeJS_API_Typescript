@@ -14,7 +14,7 @@ class Db {
         this.DB_URL_PROD = 'mongodb://link-db/db_portal';
     }
     createConnection() {
-        mongoose_1.default.connect(this.DB_URL_PROD);
+        mongoose_1.default.connect(this.DB_URL_DEV);
     }
 }
 exports.default = Db;

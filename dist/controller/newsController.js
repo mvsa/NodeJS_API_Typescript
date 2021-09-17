@@ -28,8 +28,8 @@ const redis_1 = __importDefault(require("redis"));
 const helper_1 = __importDefault(require("../utils/helper"));
 class NewsController {
     get(req, res) {
-        // const cliente = redis.createClient(); local
-        const cliente = redis_1.default.createClient(6379, 'redis');
+        const cliente = redis_1.default.createClient();
+        //const cliente = redis.createClient(6379,'redis'); prd
         cliente.get('news', (err, reply) => {
             if (reply) { //se ja tiver algo no redis com a chave 'news'
                 helper_1.default.sendResponse(res, HttpStatus.OK, JSON.parse(reply)); //retorna os dados do redis (mais rapido)

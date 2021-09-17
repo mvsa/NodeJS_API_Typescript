@@ -9,8 +9,8 @@ class NewsController {
 
     get(req: Request, res: Response) {
 
-       // const cliente = redis.createClient(); local
-        const cliente = redis.createClient(6379,'redis');
+       const cliente = redis.createClient(); 
+        //const cliente = redis.createClient(6379,'redis'); prd
 
         cliente.get('news', (err, reply) => {
             if (reply) {  //se ja tiver algo no redis com a chave 'news'

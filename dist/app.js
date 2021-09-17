@@ -7,9 +7,9 @@ const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const cors_1 = __importDefault(require("cors"));
 const db_1 = __importDefault(require("./database/db"));
-const newsController_1 = __importDefault(require("./controller/newsController"));
 const auth_1 = __importDefault(require("./config/auth"));
 const uploads_1 = __importDefault(require("./utils/uploads"));
+const newsRouter_1 = __importDefault(require("./routes/newsRouter"));
 class Startup {
     constructor() {
         this.app = (0, express_1.default)();
@@ -40,15 +40,12 @@ class Startup {
                 console.error('erro', err);
             }
         });
-        this.app.use(auth_1.default.validate);
         this.app.route('/').get((req, rest) => {
             rest.send({ versao: '0.0.1' });
         });
-        this.app.route("/api/v1/news").get(newsController_1.default.get);
-        this.app.route("/api/v1/news/:id").get(newsController_1.default.getById);
-        this.app.route("/api/v1/news").post(newsController_1.default.create);
-        this.app.route("/api/v1/news/:id").put(newsController_1.default.update);
-        this.app.route("/api/v1/news/:id").delete(newsController_1.default.delete);
+        this.app.use(auth_1.default.validate);
+        //News Routers
+        this.app.use("/api/v1", newsRouter_1.default);
     }
 }
 exports.default = new Startup();

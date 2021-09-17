@@ -11,7 +11,7 @@ class Db{
     private DB_URL_PROD = 'mongodb://link-db/db_portal';
 
     createConnection(){
-        mongoose.connect(this.DB_URL_PROD);
+        mongoose.connect(this.DB_URL_DEV);
     }
 }
 

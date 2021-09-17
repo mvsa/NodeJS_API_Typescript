@@ -3,10 +3,9 @@ import bodyparser from 'body-parser';
 import cors from 'cors';
 
 import Db from './database/db';
-import NewsController from './controller/newsController';
 import Auth from './config/auth';
-
 import upload from './utils/uploads';
+import newsRouter from './routes/newsRouter';
 
 class Startup{
     public app: express.Application;
@@ -47,16 +46,13 @@ class Startup{
             }   
         });
 
-        this.app.use(Auth.validate);
+        
         this.app.route('/').get((req,rest)=>{
             rest.send({versao: '0.0.1'})
         });
-
-        this.app.route("/api/v1/news").get(NewsController.get);
-        this.app.route("/api/v1/news/:id").get(NewsController.getById);
-        this.app.route("/api/v1/news").post(NewsController.create);
-        this.app.route("/api/v1/news/:id").put(NewsController.update);
-        this.app.route("/api/v1/news/:id").delete(NewsController.delete);
+        this.app.use(Auth.validate);
+        //News Routers
+        this.app.use("/api/v1", newsRouter)
     }
 }
 
