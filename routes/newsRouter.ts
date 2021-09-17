@@ -7,6 +7,7 @@ const newsRouter = express.Router();
 
 newsRouter.route("/news").get(NewsController.get);
 newsRouter.route("/news/:id").get(NewsController.getById);
+newsRouter.route("/news/export/csv").get(NewsController.exportToCsv);
 newsRouter.route("/news").post(NewsController.create);
 newsRouter.route("/news/:id").put(NewsController.update);
 newsRouter.route("/news/:id").delete(NewsController.delete);

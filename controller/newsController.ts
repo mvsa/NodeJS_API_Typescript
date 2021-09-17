@@ -4,12 +4,12 @@ import * as HttpStatus from 'http-status';
 import redis from 'redis';
 
 import Helper from "../utils/helper"
+import ExportFiles from '../utils/exportFiles';
 
 class NewsController {
 
     get(req: Request, res: Response) {
-
-       const cliente = redis.createClient(); 
+        const cliente = redis.createClient();
         //const cliente = redis.createClient(6379,'redis'); prd
 
         cliente.get('news', (err, reply) => {
@@ -34,6 +34,18 @@ class NewsController {
         NewsService.getById(_id)
             .then(news => Helper.sendResponse(res, HttpStatus.OK, news))
             .catch(err => console.error('erro', err));
+    }
+
+
+    async exportToCsv(req: Request, res: Response) {
+        try {
+            const response = await NewsService.get();
+            const filename = ExportFiles.tocsv(response);
+            Helper.sendResponse(res, HttpStatus.OK, req.get('host') + '/exports' + filename);
+
+        } catch (error) {
+            console.error('Erro ao exportar', error)
+        }
     }
 
     create(req: Request, res: Response) {

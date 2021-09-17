@@ -18,6 +18,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -26,6 +35,7 @@ const newsService_1 = __importDefault(require("../services/newsService"));
 const HttpStatus = __importStar(require("http-status"));
 const redis_1 = __importDefault(require("redis"));
 const helper_1 = __importDefault(require("../utils/helper"));
+const exportFiles_1 = __importDefault(require("../utils/exportFiles"));
 class NewsController {
     get(req, res) {
         const cliente = redis_1.default.createClient();
@@ -51,6 +61,18 @@ class NewsController {
         newsService_1.default.getById(_id)
             .then(news => helper_1.default.sendResponse(res, HttpStatus.OK, news))
             .catch(err => console.error('erro', err));
+    }
+    exportToCsv(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield newsService_1.default.get();
+                const filename = exportFiles_1.default.tocsv(response);
+                helper_1.default.sendResponse(res, HttpStatus.OK, req.get('host') + '/exports' + filename);
+            }
+            catch (error) {
+                console.error('Erro ao exportar', error);
+            }
+        });
     }
     create(req, res) {
         const vm = req.body;

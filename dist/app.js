@@ -31,6 +31,8 @@ class Startup {
         this.app.use(body_parser_1.default.json()); //deprecated
         this.app.use(body_parser_1.default.urlencoded({ extended: false })); //para que seja possivel trabalhar com query string(?)
         this.app.use((0, compression_1.default)());
+        //permite que acesso do express a pasta estatica para podermos baixar files(?)
+        this.app.use('/exports', express_1.default.static(process.cwd() + '/exports'));
     }
     //As rotas poderiam ser encapsuladas para evitar repetição de codigo
     routes() {

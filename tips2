@@ -2,12 +2,8 @@ npm init -y
 npm install typescript ts-node body-parser express http-status 
 tsc --init
 npm run compile (deixar rodando em bk)
-npm install mongoose 
-npm install cors
-npm install jsonwebtoken
-npm install multer
-npm install compression
-npm install nodemon
+
+pacote compression - gzip
 
 
 após o docker file {
@@ -24,7 +20,15 @@ após o docker file {
 
 
 
+{
+    transpile:
 
+    adicionada flag -diagnostics no script compile, para trazer informações
+    sobre o processo
+    liberada flag 'incremental' no tsconfig para  otimizar tempo de transpile através de cacheamento de arquivos não alterados, atraves do arquivo tsconfig.tsbuildinfo que ele gera 
+
+
+}
 
 
 
