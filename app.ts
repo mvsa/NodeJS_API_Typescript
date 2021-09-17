@@ -2,11 +2,14 @@ import express from "express";
 import bodyparser from 'body-parser';
 import cors from 'cors';
 import compression from 'compression';
+import { graphqlHTTP } from "express-graphql";
 
 import Db from './database/db';
 import Auth from './config/auth';
 import upload from './utils/uploads';
 import newsRouter from './routes/newsRouter';
+import schema from "./graphql/schemas";
+import resolvers from "./graphql/resolver";
 
 class Startup {
     public app: express.Application;
@@ -49,6 +52,13 @@ class Startup {
                 console.error('erro', err)
             }
         });
+
+        this.app.use('/graphql', graphqlHTTP({
+            schema,
+            rootValue:resolvers,
+            graphiql:true  //debug mode (navegador)
+            
+        }))
 
 
         this.app.route('/').get((req, rest) => {

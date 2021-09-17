@@ -10,7 +10,7 @@ class NewsController {
 
     get(req: Request, res: Response) {
         const cliente = redis.createClient();
-        //const cliente = redis.createClient(6379,'redis'); prd
+        //const cliente = redis.createClient(6379,'redis'); prd 
 
         cliente.get('news', (err, reply) => {
             if (reply) {  //se ja tiver algo no redis com a chave 'news'
@@ -32,6 +32,18 @@ class NewsController {
         const _id = req.params.id;
 
         NewsService.getById(_id)
+            .then(news => Helper.sendResponse(res, HttpStatus.OK, news))
+            .catch(err => console.error('erro', err));
+    }
+
+    search(req: Request, res: Response) {
+        const term = req.params.term;
+
+        const page = req.query.page || 1;
+        const perPage = req.query.limit || 10;
+
+
+        NewsService.search(term, page, perPage)
             .then(news => Helper.sendResponse(res, HttpStatus.OK, news))
             .catch(err => console.error('erro', err));
     }

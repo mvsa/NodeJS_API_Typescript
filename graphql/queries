@@ -1,0 +1,84 @@
+gets
+
+{
+  newsGetById(id:"6144a2bfef9082025b40a48e"){
+    title
+  },
+  
+  newslist{
+  _id,
+  title,
+  text
+ 
+	}
+}
+
+
+==============
+
+mutations
+
+mutation($news:NewsInput!){
+  addNews(input:$news){
+    hat,
+    title,
+    text,
+    author,
+    img,
+    publishDate,
+    tag,
+    link,
+    active
+  }
+}
+
+variables ={
+    "news": {
+    "hat": "estudo graphql",
+    "title": "Como aprender graphql",
+    "text": "Basta estudar",
+    "author": "marcos",
+    "img": "imglink",
+    "link": "link",
+    "active": true
+    }
+}
+
+
+
+mutation($news:NewsInput!){
+  updateNews(input:$news){
+    hat,
+    title,
+    text,
+    author,
+    img,
+    publishDate,
+    tag,
+    link,
+    active
+  }
+}
+
+{
+"news": {
+  "_id": "6144a2bfef9082025b40a48e",
+  "hat": "estudo graphql2",
+  "title": "Como aprender graphql",
+  "text": "Basta estudar os tutoriais",
+  "author": "marcos",
+  "img": "imglink",
+  "link": "link",
+  "active": true
+}
+
+
+}
+
+
+
+mutation{
+  deleteNews(id:"6144a2bfef9082025b40a48e"){
+		_id
+  }
+}

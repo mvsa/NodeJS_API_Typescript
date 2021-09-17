@@ -7,10 +7,13 @@ const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const cors_1 = __importDefault(require("cors"));
 const compression_1 = __importDefault(require("compression"));
+const express_graphql_1 = require("express-graphql");
 const db_1 = __importDefault(require("./database/db"));
 const auth_1 = __importDefault(require("./config/auth"));
 const uploads_1 = __importDefault(require("./utils/uploads"));
 const newsRouter_1 = __importDefault(require("./routes/newsRouter"));
+const schemas_1 = __importDefault(require("./graphql/schemas"));
+const resolver_1 = __importDefault(require("./graphql/resolver"));
 class Startup {
     constructor() {
         this.app = (0, express_1.default)();
@@ -44,6 +47,11 @@ class Startup {
                 console.error('erro', err);
             }
         });
+        this.app.use('/graphql', (0, express_graphql_1.graphqlHTTP)({
+            schema: schemas_1.default,
+            rootValue: resolver_1.default,
+            graphiql: true //debug mode (navegador)
+        }));
         this.app.route('/').get((req, rest) => {
             rest.send({ versao: '0.0.1' });
         });

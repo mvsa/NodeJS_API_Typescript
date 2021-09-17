@@ -8,6 +8,7 @@ const newsController_1 = __importDefault(require("../controller/newsController")
 const newsRouter = express_1.default.Router();
 newsRouter.route("/news").get(newsController_1.default.get);
 newsRouter.route("/news/:id").get(newsController_1.default.getById);
+newsRouter.route("/news/search/:term").get(newsController_1.default.search);
 newsRouter.route("/news/export/csv").get(newsController_1.default.exportToCsv);
 newsRouter.route("/news").post(newsController_1.default.create);
 newsRouter.route("/news/:id").put(newsController_1.default.update);

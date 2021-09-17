@@ -39,7 +39,7 @@ const exportFiles_1 = __importDefault(require("../utils/exportFiles"));
 class NewsController {
     get(req, res) {
         const cliente = redis_1.default.createClient();
-        //const cliente = redis.createClient(6379,'redis'); prd
+        //const cliente = redis.createClient(6379,'redis'); prd 
         cliente.get('news', (err, reply) => {
             if (reply) { //se ja tiver algo no redis com a chave 'news'
                 helper_1.default.sendResponse(res, HttpStatus.OK, JSON.parse(reply)); //retorna os dados do redis (mais rapido)
@@ -59,6 +59,14 @@ class NewsController {
     getById(req, res) {
         const _id = req.params.id;
         newsService_1.default.getById(_id)
+            .then(news => helper_1.default.sendResponse(res, HttpStatus.OK, news))
+            .catch(err => console.error('erro', err));
+    }
+    search(req, res) {
+        const term = req.params.term;
+        const page = req.query.page || 1;
+        const perPage = req.query.limit || 10;
+        newsService_1.default.search(term, page, perPage)
             .then(news => helper_1.default.sendResponse(res, HttpStatus.OK, news))
             .catch(err => console.error('erro', err));
     }

@@ -7,6 +7,7 @@
  - JWT
  - Docker 
  - Redis
+ - GraphQl
  
 Obs: Durante as aulas, o instrutor tomou algumas decisões de arquitetura do projeto e realizou determinadas implementações que não necessariamente estou de acordo ou considero a solução mais adequada.
 Para tais momentos utilizei como oportunidade para comentar em código minhas impressões
